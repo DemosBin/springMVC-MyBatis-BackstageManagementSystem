@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fb.dao.UserDao">
+
+    <resultMap type="com.fb.entity.User" id="userMap">
+        <id property="p_id" column="p_id" />
+        <result property="s_name" column="s_name" />
+    </resultMap>
+    <select id="getUserById" parameterType="com.fb.entity.User" resultType="com.fb.entity.User">
+        select p_id,s_name from t_user where p_id = #{p_id}
+    </select>
+
+    <select id="getUserList"  resultMap="userMap">
+        select p_id,s_name from t_user;
+    </select>
+
+    <update id="updateUser" parameterType="com.fb.entity.User">
+        UPDATE t_user SET S_NAME  = #{s_name} WHERE  p_id = #{p_id};
+    </update>
+
+    <delete id="delUser" parameterType="com.fb.entity.User">
+          DELETE t_user WHERE p_id = #{p_id}
+    </delete>
+</mapper>
